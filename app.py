@@ -10,8 +10,11 @@ client = MongoClient(os.environ['DB_PORT_27017_TCP_ADDR'],27017)
 #client = MongoClient("localhost",27017) 
 db = client.blog
 
+@app.route('/posts')
+def home():
+    return jsonify("please visit this url to read inserted blog post")
 
-@app.route('/')
+@app.route('/posts')
 def posts():
     _items = db.posts.find({}, {'_id': False})
     return dumps(_items)
